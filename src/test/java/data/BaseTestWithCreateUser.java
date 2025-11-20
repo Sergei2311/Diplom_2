@@ -12,16 +12,18 @@ import static action.DataAPI.USER_DELETE;
 import static data.TestData.*;
 import static io.restassured.RestAssured.given;
 
-public class BaseTestWithCreateUser implements CreateUser {
+public class BaseTestWithCreateUser {
     private String userID;
     private UserModel user;
+    CreateUser createUser;
 
     // BaseTest с созданием пользователя
     @Before
     public void setup() {
         RestAssured.baseURI = BASEURL;
         user = new UserModel(EMAIL, PASSWORD, NAME);
-        createUserApi(user);
+        createUser = new CreateUser();
+        createUser.createUserApi(user);
     }
 
     @After  // удаляем пользователя

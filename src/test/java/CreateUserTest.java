@@ -1,6 +1,6 @@
 import action.CreateUser;
 import data.BaseTest;
-import io.qameta.allure.Step;
+import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import model.UserModel;
@@ -10,17 +10,19 @@ import static data.TestData.*;
 import static java.net.HttpURLConnection.HTTP_OK;
 import static org.hamcrest.CoreMatchers.equalTo;
 
-public class CreateUserTest extends BaseTest implements CreateUser {
+public class CreateUserTest extends BaseTest {
     private UserModel user;
     Response response;
+    CreateUser createUser;
 
     @Test
     @DisplayName("Creating user")
-    @Step("Создать пользователя")
+    @Description("Создать пользователя")
     public void createUserTest() {
         user = new UserModel(EMAIL, PASSWORD, NAME);
+        createUser = new CreateUser();
 
-        response = createUserApi(user)
+        response = createUser.createUserApi(user)
                 .then()
                 .log().all()
                 .statusCode(HTTP_OK) // Проверяем код ответа
