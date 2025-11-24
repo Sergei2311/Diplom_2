@@ -8,6 +8,7 @@ public class DataAPI {
     public static final String USER_DELETE = "/api/auth/user";
     public static final String USER_LOGIN = "/api/auth/login";
     public static final String ORDER_CREATE = "/api/orders";
+    public static final String ORDER_LOGOUT ="/api/auth/logout";
 
     static Faker user = new Faker();
     public static final String EMAIL = user.regexify("[a-z]{8}")+"@test.ru";

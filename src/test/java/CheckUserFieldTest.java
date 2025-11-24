@@ -1,18 +1,18 @@
 import action.CreateUser;
-import data.BaseTest;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
+import io.restassured.RestAssured;
 import model.UserModel;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import static data.TestData.*;
+import static action.DataAPI.*;
 import static java.net.HttpURLConnection.HTTP_FORBIDDEN;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 @RunWith(Parameterized.class)
-public class CheckUserFieldTest extends BaseTest {
+public class CheckUserFieldTest  {
     private final String email;
     private final String password;
     private final String name;
@@ -37,6 +37,7 @@ public class CheckUserFieldTest extends BaseTest {
     @DisplayName("Checking User fields")
     @Description("Проверка API создание пользователя при незаполненых полях")
     public void checkFieldTest() {
+        RestAssured.baseURI = BASEURL;
         UserModel user = new UserModel(email, password, name);
         CreateUser createUser = new CreateUser();
 
